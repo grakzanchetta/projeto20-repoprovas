@@ -11,8 +11,16 @@ async function createUser(req: Request, res: Response) {
     email: req.body.email,
     password: req.body.password,
   };
+
   const createdUser = await userServices.createUser(userData);
   res.status(201).send(createdUser);
 }
 
-export { createUser, helloThere };
+async function loginUser(req: Request, res: Response) {
+  const user = req.body;
+  const loginUser = await userServices.loginUser(user);
+
+  res.status(201).send(loginUser);
+}
+
+export { createUser, loginUser, helloThere };
