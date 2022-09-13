@@ -9,14 +9,10 @@ async function findUserByEmail(email: string) {
   });
 }
 
-async function findAllUsers() {
-  return await prisma.users.findMany();
-}
-
 async function insertUser(data: CreateAndLoginUser) {
   await prisma.users.create({
     data,
   });
 }
 
-export { findUserByEmail, insertUser, findAllUsers };
+export { findUserByEmail, insertUser };

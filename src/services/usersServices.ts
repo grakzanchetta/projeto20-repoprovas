@@ -61,9 +61,4 @@ async function generateToken(userData: CreateAndLoginUser) {
   return token;
 }
 
-async function getAllUsers() {
-  const result = await usersRepository.findAllUsers();
-  return result;
-}
-
-export { createUser, getAllUsers, loginUser };
+export { createUser, loginUser };
