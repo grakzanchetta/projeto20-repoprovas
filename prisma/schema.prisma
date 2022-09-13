@@ -15,3 +15,48 @@ model Users {
   email    String @unique
   password String
 }
+
+model Categories {
+  id    Int     @id @default(autoincrement())
+  name  String
+  tests Tests[]
+}
+
+model Terms {
+  id          Int           @id @default(autoincrement())
+  number      Int
+  disciplines Disciplines[]
+}
+
+model Disciplines {
+  id                  Int                   @id @default(autoincrement())
+  name                String
+  term                Terms                 @relation(fields: [termId], references: [id])
+  termId              Int
+  teachersdisciplines TeachersDisciplines[]
+}
+
+model Teachers {
+  id                  Int                   @id @default(autoincrement())
+  name                String
+  teachersdisciplines TeachersDisciplines[]
+}
+
+model TeachersDisciplines {
+  id           Int         @id @default(autoincrement())
+  teacher      Teachers    @relation(fields: [teacherId], references: [id])
+  teacherId    Int
+  discipline   Disciplines @relation(fields: [disciplineId], references: [id])
+  disciplineId Int
+  teste        Tests[]
+}
+
+model Tests {
+  id                  Int                 @id @default(autoincrement())
+  name                String
+  pdfUrl              String
+  category            Categories          @relation(fields: [categoryId], references: [id])
+  categoryId          Int
+  teacherDiscipline   TeachersDisciplines @relation(fields: [teacherDisciplineId], references: [id])
+  teacherDisciplineId Int
+}
