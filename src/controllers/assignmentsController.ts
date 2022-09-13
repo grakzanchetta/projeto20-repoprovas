@@ -10,4 +10,20 @@ async function createAssignment(req: Request, res: Response) {
   res.status(201).send(createdAssignment);
 }
 
-export { createAssignment };
+async function findAllAssignmentsByDiscipline(req: Request, res: Response) {
+  const assignmentsList =
+    await assignmentServices.findAllAssignmentsByDiscipline();
+  res.status(201).send(assignmentsList);
+}
+
+async function findAllAssignmentsByTeacher(req: Request, res: Response) {
+  const assignmentsList =
+    await assignmentServices.findAllAssignmentsByTeacher();
+  res.status(201).send(assignmentsList);
+}
+
+export {
+  createAssignment,
+  findAllAssignmentsByDiscipline,
+  findAllAssignmentsByTeacher,
+};

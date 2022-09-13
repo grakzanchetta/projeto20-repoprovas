@@ -2,7 +2,11 @@ import { Router } from "express";
 import { validateToken } from "../middlewares/authMiddleware";
 import { createNewAssignment } from "../schemas/assignmentsSchema";
 import { validateSchemaMiddleware } from "../middlewares/schemaMiddleware";
-import { createAssignment } from "../controllers/assignmentsController";
+import {
+  createAssignment,
+  findAllAssignmentsByTeacher,
+  findAllAssignmentsByDiscipline,
+} from "../controllers/assignmentsController";
 
 const assignmentsRouter = Router();
 
@@ -12,5 +16,12 @@ assignmentsRouter.post(
   validateSchemaMiddleware(createNewAssignment),
   createAssignment
 );
+
+assignmentsRouter.get(
+  "/discipline",
+  validateToken,
+  findAllAssignmentsByDiscipline
+);
+assignmentsRouter.get("/teacher", validateToken, findAllAssignmentsByTeacher);
 
 export default assignmentsRouter;

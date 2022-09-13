@@ -21,4 +21,22 @@ async function createAssignment(assignmentData: Tests) {
   return assignmentData;
 }
 
-export { createAssignment };
+async function findAllAssignmentsByDiscipline() {
+  const assignmentsData =
+    await assignmentsRepository.getAssignmentsByDiscipline();
+
+  return assignmentsData;
+}
+
+async function findAllAssignmentsByTeacher() {
+  const assignmentsData =
+    await assignmentsRepository.getAssignmentByInstructors();
+
+  return assignmentsData;
+}
+
+export {
+  createAssignment,
+  findAllAssignmentsByDiscipline,
+  findAllAssignmentsByTeacher,
+};
