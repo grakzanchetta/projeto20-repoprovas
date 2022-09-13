@@ -3,4 +3,4 @@ import { helloThere } from "../controllers/usersController";
 
 const userRouter = Router();
 
-userRouter.get("/", helloThere);
+userRouter.get("/hello", helloThere);
