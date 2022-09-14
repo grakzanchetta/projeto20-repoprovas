@@ -19,12 +19,6 @@ async function validateSignUp(userData: CreateAndLoginUser) {
       message: "email already registered. try another",
     };
   }
-  if (userData.password.length < 10) {
-    throw {
-      type: "unauthorized",
-      message: "password must be 10 characters long, at least",
-    };
-  }
   return userData;
 }
 
