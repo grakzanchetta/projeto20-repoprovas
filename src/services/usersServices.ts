@@ -41,7 +41,7 @@ async function validateLogin(userData: CreateAndLoginUser) {
   const isCorrectPassword = await bcrypt.compare(password, userExists.password);
   if (isCorrectPassword === false) {
     throw {
-      type: "unauthorized",
+      type: "not_found",
       message: "wrong password",
     };
   }

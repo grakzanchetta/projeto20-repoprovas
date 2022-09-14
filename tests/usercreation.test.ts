@@ -8,6 +8,10 @@ const newUserPassword: string = faker.random.alpha(10);
 const incorrectPassword: string = faker.random.alpha(5);
 const newUserConfirmedPassword: string = faker.random.alpha(10);
 
+beforeEach(async () => {
+  await prisma.$executeRaw`TRUNCATE TABLE "Users"`;
+});
+
 describe("Testing route POST /signup", () => {
   it("Should return status 201 when correct data is informed", async () => {
     const body = {

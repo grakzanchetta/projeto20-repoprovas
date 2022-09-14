@@ -15,7 +15,7 @@ async function loginUser(req: Request, res: Response) {
   const user = req.body;
   const loginUser = await userServices.loginUser(user);
 
-  res.status(201).send(loginUser);
+  res.status(200).send(loginUser);
 }
 
 export { createUser, loginUser };
