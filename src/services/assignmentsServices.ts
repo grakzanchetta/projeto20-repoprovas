@@ -13,7 +13,7 @@ async function createAssignment(assignmentData: Tests) {
   if (!categoryExists || !teacherDisciplineExists) {
     throw {
       type: "not_found",
-      message: "category or teacher/discipline not found",
+      message: "category or teacher/discipline doesn't exist!",
     };
   }
 

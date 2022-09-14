@@ -11,7 +11,7 @@ export async function validateToken(
   const secretKey = process.env.JWT_KEY;
   if (secretKey === undefined || token === undefined) {
     throw {
-      type: "not_found",
+      type: "unauthorized",
       message: "either key or token hasn't been found",
     };
   }
@@ -19,7 +19,7 @@ export async function validateToken(
   const user = jwt.verify(token, secretKey, function (err) {
     if (err) {
       throw {
-        type: "not_found",
+        type: "unauthorized",
         message: "Token not found",
       };
     }

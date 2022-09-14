@@ -10,5 +10,6 @@ export default async function errorHandlerMiddleware(
   if (error.type === "unauthorized") return res.status(401).send(error.message);
   if (error.type === "not_found") return res.status(404).send(error.message);
   if (error.type === "bad_request") return res.status(400).send(error.message);
+  if (error.type === "wrong_data") return res.status(422).send(error.message);
   res.status(500);
 }

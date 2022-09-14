@@ -10,6 +10,7 @@ const newUserConfirmedPassword: string = faker.random.alpha(10);
 
 beforeEach(async () => {
   await prisma.$executeRaw`TRUNCATE TABLE "Users"`;
+  await prisma.$executeRaw`TRUNCATE TABLE "Tests"`;
 });
 
 describe("Testing route POST /signup", () => {

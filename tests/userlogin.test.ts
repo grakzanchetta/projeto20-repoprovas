@@ -3,14 +3,14 @@ import supertest from "supertest";
 import { faker } from "@faker-js/faker";
 import prisma from "../src/databases/database";
 
-beforeEach(async () => {
-  await prisma.$executeRaw`TRUNCATE TABLE "Users"`;
-});
-
 const newUserEmail: string = faker.internet.email();
 const newUserPassword: string = faker.random.alpha(10);
 const incorrectPassword: string = faker.random.alpha(5);
-const newUserConfirmedPassword: string = faker.random.alpha(10);
+
+beforeEach(async () => {
+  await prisma.$executeRaw`TRUNCATE TABLE "Users"`;
+  await prisma.$executeRaw`TRUNCATE TABLE "Tests"`;
+});
 
 describe("Testing route POST /signin", () => {
   it("Should return status 200 when correct dataUser is informed", async () => {
@@ -29,7 +29,6 @@ describe("Testing route POST /signin", () => {
 
     const result = await supertest(app).post("/signin").send(newUser);
     const status = result.status;
-
     expect(status).toEqual(200);
   });
 
@@ -111,7 +110,7 @@ describe("Testing route POST /signin", () => {
     expect(status).toEqual(404);
   });
 
-  it("Should return status 401 when informed password isn't registered", async () => {
+  it("Should return status 404 when informed password isn't registered", async () => {
     const body = {
       email: newUserEmail,
       password: newUserPassword,
@@ -122,7 +121,7 @@ describe("Testing route POST /signin", () => {
 
     const newUser = {
       email: newUserEmail,
-      password: "passwordisverywrong",
+      password: "IDontEvenRememberWhereIBorn",
     };
 
     const result = await supertest(app).post("/signin").send(newUser);
