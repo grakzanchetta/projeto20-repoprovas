@@ -1,0 +1,1 @@
+usar o bd inicial como seed seria maneiro
