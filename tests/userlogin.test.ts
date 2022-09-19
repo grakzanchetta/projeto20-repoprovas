@@ -15,16 +15,16 @@ beforeEach(async () => {
 describe("Testing route POST /signin", () => {
   it("Should return status 200 when correct dataUser is informed", async () => {
     const body = {
-      email: newUserEmail,
-      password: newUserPassword,
-      confirmPassword: newUserPassword,
+      email: "sou_um_email_de_teste@email.com",
+      password: "sou_uma_senha_correta",
+      confirmPassword: "sou_uma_senha_correta",
     };
 
     await supertest(app).post("/signup").send(body);
 
     const newUser = {
-      email: newUserEmail,
-      password: newUserPassword,
+      email: body.email,
+      password: body.password,
     };
 
     const result = await supertest(app).post("/signin").send(newUser);
